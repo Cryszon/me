@@ -50,3 +50,15 @@ RUN sh -c 'echo "${test_secret}" > /tmp/test_secret' && \
     echo "Command that uses secret from /tmp/test_secret"
 RUN rm /tmp/test_secret
 ```
+
+## How to simulate Coolify deployment build args locally
+
+When you check **Build Variable?** in Coolify UI, Coolify passes it as a build
+argument to the build command. You can simulate this by using `--build-arg` when
+building locally. The recommended way to test this is to use a separate file for
+storing the secret.
+
+```sh
+docker compose build --build-arg test_secret=$(cat secret_file)
+```
+
