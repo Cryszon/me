@@ -33,32 +33,58 @@ Here's a workaround using build args insead of secrets.
 > documentation](https://docs.docker.com/reference/dockerfile/#arg) and [this
 > discussion](https://stackoverflow.com/q/44615837/1865857)
 
-Let's say you use a secret in your Dockerfile:
+Let's say you have following files:
+
+```yml
+# docker-compose.yml
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      secrets:
+        - TEST_SECRET
+
+secrets:
+  TEST_SECRET:
+    environment: TEST_SECRET
+```
 
 ```Dockerfile
 # Dockerfile
-RUN --mount=type=secret,id=test_secret \
-  echo "Command that uses secret from /run/secrets/test_secret"
+FROM alpine:latest
+
+RUN --mount=type=secret,id=TEST_SECRET \
+  cat /run/secrets/TEST_SECRET > /test_secret_file
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
-This is how you would use build arg instead:
+Here's how you use build args instead:
+
+```yml
+# docker-compose.yml
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+      args:
+        - TEST_SECRET
+```
 
 ```Dockerfile
 # Dockerfile
-ARG test_secret
-RUN sh -c 'echo "${test_secret}" > /tmp/test_secret' && \
-    echo "Command that uses secret from /tmp/test_secret"
-RUN rm /tmp/test_secret
+FROM alpine:latest
+
+ARG TEST_SECRET
+RUN sh -c 'echo "${TEST_SECRET}" > /tmp/TEST_SECRET' && \
+  cat /tmp/TEST_SECRET > /test_secret_file
+RUN unset TEST_SECRET && rm /tmp/TEST_SECRET
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 ```
 
-## How to simulate Coolify deployment build args locally
-
-When you check **Build Variable?** in Coolify UI, Coolify passes it as a build
-argument to the build command. You can simulate this by using `--build-arg` when
-building locally. The recommended way to test this is to use a separate file for
-storing the secret.
-
-```sh
-docker compose build --build-arg test_secret=$(cat secret_file)
-```
-
+See [this
+article](environment-variables-and-build-args-for-docker-compose-in-coolify.md)
+for more information about build args with Docker Compose and this [test
+repository](https://github.com/Cryszon/coolify-build-secrets-test) for a
+deployable example.
