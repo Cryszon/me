@@ -1,23 +1,10 @@
 # Docker build secrets in Coolify
 
-Coolify doesn't currently _(2024-08-15)_ support build secrets.
-
-> After some more research, testing and looking at [Coolify source
-> code](https://github.com/coollabsio/coolify/blob/69fc4c7f525100c9291b75f4b9f31f92b285bf14/app/Jobs/ApplicationDeploymentJob.php#L427),
-> I've come to the conclusion that this is not currently possible. Coolify seems
-> to handle env variables defined in the UI by writing them into an env file
-> that is then used in the `environment` configuration for each service, which
-> means that the top level `secrets` element won't be able to access these
-> variables.
->
-> This means that support for build secrets needs to be added as a new feature.
-> Secrets could still be managed in Coolify through the Environment Variables
-> UI, but they need to be passed to Docker separately.
->
-> Feel free to correct me if I'm wrong.
->
-> -- <cite>[@Cryszon on Coolify
-> Discord](https://discord.com/channels/459365938081431553/1273315947893096470)</cite>
+Coolify doesn't currently _(2024-08-20)_ officially support build secrets. There
+is a [discussion on
+Discord](https://discord.com/channels/459365938081431553/1273315947893096470)
+with research on the topic. In some cases build secrets might appear to work,
+but they are unreliable.
 
 Here's a workaround using build args insead of secrets.
 
@@ -29,9 +16,12 @@ Here's a workaround using build args insead of secrets.
 > secret from the build logs and the temp file is removed (`rm /tmp/...`), but
 > the secret value will still be readable by inspecting the built image.
 >
+> Environment variables are also stored in plain text in
+> `/data/coolify/applications/<id>/.env` on the host system.
+>
 > See also [this
 > documentation](https://docs.docker.com/reference/dockerfile/#arg) and [this
-> discussion](https://stackoverflow.com/q/44615837/1865857)
+> discussion](https://stackoverflow.com/q/44615837/1865857).
 
 Let's say you have following files:
 
