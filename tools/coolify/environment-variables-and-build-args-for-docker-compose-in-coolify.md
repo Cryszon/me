@@ -47,6 +47,9 @@ The best way to ensure env variables are updated is to delete and recreate them.
 Once deleted, you can add them again in **Developer view**, switch back to
 normal view and set options (such as **Is Literal?**) and optionally lock them.
 
+Updating env variables seems to work without custom build command (`--no-cache`)
+so it is recommended not to use it, since it causes some other problems.
+
 > [!CAUTION]
 >
 > Locked environment variables are only hidden in the Coolify UI. They are still
