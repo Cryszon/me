@@ -29,3 +29,26 @@ services:
 
 By omitting the value of a build arg, Docker Compose automatically uses the
 value defined in the `.env` file written by Coolify.
+
+## Env variables with quotes (e.g. JSON)
+
+To use environment variables with quotes, set them in **Developer View**, switch
+back to normal view and check **Is Literal?**.
+
+Example of env variable with quotes:
+
+```ini
+COMPOSER_AUTH_JSON='{ "github-oauth": { "github.com": "github_pat_XXXX" } }'
+```
+
+## Updating env variables
+
+The best way to ensure env variables are updated is to delete and recreate them.
+Once deleted, you can add them again in **Developer view**, switch back to
+normal view and set options (such as **Is Literal?**) and optionally lock them.
+
+> [!CAUTION]
+>
+> Locked environment variables are only hidden in the Coolify UI. They are still
+> stored in plain text on the host system in
+> `/data/coolify/applications/<id>/.env`.
