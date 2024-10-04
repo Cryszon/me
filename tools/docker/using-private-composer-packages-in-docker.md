@@ -43,3 +43,4 @@ RUN --mount=type=secret,id=composer_auth_json,dst=/app/auth.json \
 - [Managing your personal access tokens - GitHub Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
 - [Authentication for privately hosted packages and repositories - Composer](https://getcomposer.org/doc/articles/authentication-for-private-packages.md#authentication-using-the-composer-auth-environment-variable)
 - [How to use secrets in Docker Compose | Docker Docs](https://docs.docker.com/compose/use-secrets/)
+- [dunglas/docker-private-composer-packages: Example: Securely Access Private Composer Packages](https://github.com/dunglas/docker-private-composer-packages)
