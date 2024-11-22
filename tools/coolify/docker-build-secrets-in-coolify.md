@@ -86,4 +86,5 @@ article](environment-variables-and-build-args-for-docker-compose-in-coolify.md)
 for more information about build args with Docker Compose and this [test
 repository](https://github.com/Cryszon/coolify-build-secrets-test) for a
 deployable example.
+
 </details>
