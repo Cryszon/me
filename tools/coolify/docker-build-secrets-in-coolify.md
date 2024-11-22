@@ -1,5 +1,13 @@
 # Docker build secrets in Coolify
 
+> [!CAUTION]
+>
+> This article has been migrated to [cryszon.github.io](cryszon.github.io). This
+> version might not be up to date.
+
+<details>
+<summary>Show article</summary>
+
 Coolify doesn't currently _(2024-08-20)_ officially support build secrets. There
 is a [discussion on
 Discord](https://discord.com/channels/459365938081431553/1273315947893096470)
@@ -78,3 +86,4 @@ article](environment-variables-and-build-args-for-docker-compose-in-coolify.md)
 for more information about build args with Docker Compose and this [test
 repository](https://github.com/Cryszon/coolify-build-secrets-test) for a
 deployable example.
+</details>

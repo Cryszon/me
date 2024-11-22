@@ -1,5 +1,13 @@
 # Environment variables and build args for Docker Compose in Coolify
 
+> [!CAUTION]
+>
+> This article has been migrated to [cryszon.github.io](cryszon.github.io). This
+> version might not be up to date.
+
+<details>
+<summary>Show article</summary>
+
 When you define environment variables in Coolify UI, Coolify creates a `.env`
 file with those variables next to the `docker-compose.yml` file during
 deployment.
@@ -55,3 +63,5 @@ so it is recommended not to use it, since it causes some other problems.
 > Locked environment variables are only hidden in the Coolify UI. They are still
 > stored in plain text on the host system in
 > `/data/coolify/applications/<id>/.env`.
+
+</details>
