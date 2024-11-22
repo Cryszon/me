@@ -2,7 +2,7 @@
 
 > [!CAUTION]
 >
-> This article has been migrated to [cryszon.github.io](cryszon.github.io). This
+> This article has been migrated to [cryszon.github.io](https://cryszon.github.io/). This
 > version might not be up to date.
 
 <details>
